@@ -15,6 +15,7 @@
 - This project is eli and ofir shared project as part of an advanced programming course.
 - So far the project illustrates the [KNN algorithm](https://medium.com/swlh/k-nearest-neighbor-ca2593d7a3c4)
 - This project designed to classify different types of objects according to the reception of the input vector and the classification of the type by calculating the distance of K nearest neighbors and determining according to the type of most of them.
+
 ![image](https://user-images.githubusercontent.com/118715083/209792303-14ada464-df17-4de1-a617-4a0c5110e097.png)
 ![image](https://user-images.githubusercontent.com/118715083/209792410-cd47a439-4393-4692-aad1-7921903de4ad.png)
 
@@ -43,6 +44,12 @@ The calculate of the [Canberra distance](https://en.wikipedia.org/wiki/Canberra_
 The calculate of the [Chebyshev distance](https://en.wikipedia.org/wiki/Chebyshev_distance) - ![Screenshot_20221123_115919](https://user-images.githubusercontent.com/118715083/203518497-db9a36bc-8691-4a64-a2ef-2ada194f5330.png)
 
 ## implemantation
+
+We designed the code so the client and the server will be separated, it means the client doesn't know what the server is about to send - all it does is sending messages and receiving messages. Our Server supports unlimited-size messages and unlimited amount of columns in a csv file.
+
+We changed the classifier to work when facing an ambiguous decision. The classifier chooses the closest type which has the most votes.
+
+We used the Command design pattern in order to handle commands in the server. The base Command class is an abstract class, it has access to client data and IO, and each command subclass implements the execution differently. The commands are stored in a vector which is also used as a menu, and they are invoked using an index given by the client.
 - We implemented the program by dividing it into a number of different files according to the main purpose of each file where the division is:
 1. Distance.cpp + Distance.h : 
 These files are responsible for calculating the distance between the vectors using the familiar formulas I mentioned above when we noticed that the Euclidean distance and the Manhattan distance are a special case of the Minikowski distance, so the calculation of these two distances was carried out using the Minikowski distance functionץ
@@ -71,7 +78,12 @@ The customer is responsible for some of the correctness checks of the informatio
 
 
 ![image](https://user-images.githubusercontent.com/118715083/209791721-75a66328-e9ad-4524-91d2-978acc09b88a.png)
+6.  CLI.cpp- The CLI department of the server creates a specific client for the server and the same department manipulates the running course of the menu by creating a vector of commands according to the options defined in the menu
+CLIClient.cpp - The CLI class of the client creates a specific client at the client and the same class manipulates the running course of the menu on the client side by creating a vector of commands adapted to the client according to the options defined in the menu.
 
+
+
+![image](https://user-images.githubusercontent.com/118715083/213931425-7044c2db-52c8-4c74-bfe3-8bc570732127.png)
 
 ## Compile using this commends:
 It should be noted that in order to run the program correctly, two terminal windows must be opened, one for the client and one for the server,
