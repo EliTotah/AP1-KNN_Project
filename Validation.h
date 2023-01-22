@@ -11,6 +11,19 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
+#include <vector>
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <cstring>
+#include <sstream>
+#include "Validation.h"
+#include "Knn.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 using namespace std;
 
@@ -67,5 +80,6 @@ int ValidCharForString(string vector1);
 * and performs a check on the correctness of the input.
 ******************/
 int ValidateAll(vector<double>& v1, vector<double>& v2);
+int stringToVector (string string1);
 
 #endif
