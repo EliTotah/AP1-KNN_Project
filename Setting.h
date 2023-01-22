@@ -22,6 +22,10 @@
 #include "Command.h"
 using namespace std;
 
+/*
+This department executes the command process for the option the user chooses in 2-
+and setting the parametters k and distance according to the user choose.
+ */
 class Setting: public Command {
     public:
     Setting(DefaultIO *dio, ClientData *data);
