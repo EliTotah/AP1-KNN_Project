@@ -26,6 +26,9 @@
 
 using namespace std;
 
+/*
+The CLI department of the server creates a specific client for the server and the same department manipulates the running course of the menu by creating a vector of commands according to the options defined in the menu
+ */
 class CLI {
     private:
     DefaultIO *dio;
