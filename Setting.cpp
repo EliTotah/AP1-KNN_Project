@@ -15,7 +15,8 @@ void Setting:: execute(){
     string result = ss.str();
     dio->write(result);
     user_input = dio->read();
-    if (user_input.empty()) {
+    if (user_input == "\0") {
+        this->getIO()->write("enter");
         return;
     }
     istringstream iss(user_input);
@@ -39,9 +40,6 @@ void Setting:: execute(){
     if (k < 0 || (floor(k) != k)) {
         msg.append("invalid value for K\n");
     }
-    if (user_input == "\0"){
-        return;
-    }
     distance = parameters[1];
     //check if the distance is valid
     if (!ValidDistance(distance)){
@@ -49,5 +47,4 @@ void Setting:: execute(){
     }
     this->getIO()->write(msg);
     this->getData()->setSettings(k, distance);
-    return;
     }

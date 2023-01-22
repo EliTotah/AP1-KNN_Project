@@ -33,14 +33,14 @@ void CliCLient::start() {
             num = stoi(choose);
         }
         catch (exception e) {
-            this->getIO()->write("please enter a number\n");
+            this->getIO()->write("please enter a number-1\n");
             return;
         }
         if (choose == "8") {
             this->getIO()->write("8");
             return;
         }
-        if (num <=0 || num >= vec.size()) {
+        if (num <=0 || num > vec.size()) {
             this->getIO()->write("invalid choose\n");
             return;
         }

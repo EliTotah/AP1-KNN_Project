@@ -11,7 +11,6 @@ string SocketIO::read() {
     //Definition of the array that will contain the user's message that the client will transfer.
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
-    
     //Attempt to receive the message of the users that sent by the client in case of failure, print error.
     int read_bytes = recv(this->socket, buffer, expected_data_len, 0);
     if (read_bytes == 0) {

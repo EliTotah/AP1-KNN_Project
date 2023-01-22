@@ -20,15 +20,11 @@ void DownloadCommand::execute() {
     }
     else {
         this->getIO()->write("enter path for the output");
-        string path = this->getIO()->read();
         for (int i = 0; i<this->getData()->getClassified().size(); i++) {
-        stringstream ss;
-        ss << (i+1) << '\t' << this->getData()->getClassified()[i] << endl;
-        this->getIO()->write(ss.str());
+            stringstream ss;
+            ss << (i+1) << '\t' << this->getData()->getClassified()[i] << endl;
+            this->getIO()->write(ss.str());
         }
         this->getIO()->write("Done.");
-        if (this->getIO()->read() == "\0") {
-            return;
-        }
     }
 }

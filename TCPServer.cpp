@@ -82,7 +82,6 @@ int TCPServer::Accept() {
     unsigned int addr_len = sizeof(Client_Sin);
     //Attempt to accept the socket of the client in case of failure, print error.
     int Client_Sock = accept(this->GetSocket(), (struct sockaddr *) &Client_Sin, &addr_len);
-    cout << Client_Sock << endl;
     if (Client_Sock < 0) {
         perror("error accepting client");
         return -1;

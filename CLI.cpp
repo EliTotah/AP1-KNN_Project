@@ -46,14 +46,14 @@ void CLI::start() {
             num = stoi(choose);
         }
         catch (exception e) {
-            this->getIO()->write("please enter a number\n");
+            this->getIO()->write("please enter a number-2\n");
             continue;
         }
         if (choose == "8") {
             // close interaction
             return;
         }
-        if (num <=0 || num >= vec.size()) {
+        if (num <=0 || num > vec.size()) {
             this->getIO()->write("invalid choose\n");
             continue;
         }

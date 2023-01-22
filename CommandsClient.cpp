@@ -100,15 +100,12 @@ void UploadCommandClient::execute()  {
         output = this->dio->read();
         cout << output << endl;
         getline(cin, string1);
-        if(string1 == "\n"){
+        this->dio->write(string1);
+        output = this->dio->read();
+        if (output == "enter") {
             return;
         }
-        else{
-            this->dio->write(string1);
-            output =this->dio->read();
-            cout << output << endl;
-        }
-        return;
+        cout << output << endl;
     }
 
 
@@ -165,18 +162,21 @@ DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data,
             return;
         }
         else {
-            output = this->dio->read();
             cout << output << endl;
             getline(cin, string1);
-            if (isFile(string1)){
-                ofstream file;
-                file.open(string1);
-                 while (output!= "Done.")
-            {
-                file << output << endl;
+            ofstream file;
+            string myFIle = string1 + "/classify.csv"; 
+            file.open(myFIle);
+            if (isFile(myFIle)){
                 output = this->dio->read();
-            }
-            } else{
+                while (output!= "Done.")
+                {
+                    file << output << endl;
+                    output = this->dio->read();
+                }
+                file.close();
+                return;
+            } else {
                 perror("invalid input");
                 return;
             }
