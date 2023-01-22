@@ -2,13 +2,25 @@
 // Ofir Rothchild - 207434960
 
 #include "SocketIO.h"
-/*
-class constructor accepts an integer argument, clientSock, which is used to initialize the socket file descriptor of the class.
-*/
+
+/******************
+* Function Name: SocketIO
+* Input: DefaultIO *dio, ClientData *data
+* Output: an object DownloadCommand
+* Function Operation:class constructor accepts an integer argument, clientSock, which is used to initialize the socket file descriptor of the class.
+******************/
+//The SocketIO class constructor accepts an integer argument, clientSock, which is used to initialize the socket file descriptor of the class.
 SocketIO::SocketIO(int clientSock) {
     this->socket = clientSock;
 }
-
+/******************
+* Function Name: read
+* Input: void
+* Output: string
+* Function Operation:used to read data from the socket and returns the data in the form of a string.
+It uses a char array buffer of size 4096 to store the received data.
+The recv() function is used to receive data from the socket and the number of bytes received is stored in read_bytes. If read_bytes is 0, it returns the string "connection is closed", if read_bytes is less than 0, it returns the string "error" else it returns the buffer as a string.
+******************/
 string SocketIO::read() {
     //Definition of the array that will contain the user's message that the client will transfer.
     char buffer[4096];
@@ -23,7 +35,15 @@ string SocketIO::read() {
                 return buffer;
             }
 }
-
+/******************
+* Function Name: write
+* Input: string s
+* Output: void
+* Function Operation:used to send data over the socket. It takes a string argument, s, which contains the data to be sent.
+It uses a char array buffer of size 4096 to store the data to be sent. The memset function is used to clear the buffer.
+The copy function is used to copy the elements of the string s to the buffer array.The send() function is used to send data to the socket.
+The number of bytes sent is stored in sent_bytes. If sent_bytes is less than 0, it prints an error message "error sending to client".
+******************/
 void SocketIO::write(string s) {
     char buffer[4096];
     memset(buffer, 0, sizeof(buffer));
