@@ -102,4 +102,29 @@ int ValidateAll(vector<double>& v1, vector<double>& v2) {
     return false;
 }
 
+int stringToVector (string string1) {
+    int result=0, flag = 0;
+    double number1;
+    string word1;
+    vector<double> v1;
+    stringstream iss1(string1);
+    //read number by number from the vector that entered by the user.
+    while (getline(iss1, word1, ',')) {
+        //correctness check in order to check that correct numbers have indeed been inserted into the vector.
+        //An attempt to convert the string from the user into numbers as long as it is a valid number.
+        //In case it is a normal number, insertion of a number into a vector
+        try {
+                number1 = stod(word1);
+                v1.push_back(number1);
+            }
+        catch (exception e) {
+            break;
+        }
+    }
+    if (ValidChar(v1) == 1 && !(v1.empty())) {
+        return true;
+    }
+    return false;     
+}
+
 
