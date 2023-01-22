@@ -46,7 +46,7 @@ void CLI::start() {
             num = stoi(choose);
         }
         catch (exception e) {
-            this->getIO()->write("please enter a number-2\n");
+            this->getIO()->write("please enter a number\n");
             continue;
         }
         if (choose == "8") {
