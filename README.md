@@ -81,7 +81,7 @@ In addition The server uses multithreading for two reasons:
 •	Handling time-consuming commands on a different thread so the client will be able to send more messages while waiting.
 ![image](https://user-images.githubusercontent.com/118715083/209791721-75a66328-e9ad-4524-91d2-978acc09b88a.png)
 6.  CLI.cpp- The CLI department of the server creates a specific client for the server and the same department manipulates the running course of the menu by creating a vector of commands according to the options defined in the menu
-CLIClient.cpp - The CLI class of the client creates a specific client at the client and the same class manipulates the running course of the menu on the client side by creating a vector of commands adapted to the client according to the options defined in the menu.
+7.  CLIClient.cpp - The CLI class of the client creates a specific client at the client and the same class manipulates the running course of the menu on the client side by creating a vector of commands adapted to the client according to the options defined in the menu.
  the **Command design pattern** in order to handle commands in the server:
 The UML sketch-
 ![image](https://user-images.githubusercontent.com/118715083/213931425-7044c2db-52c8-4c74-bfe3-8bc570732127.png)
