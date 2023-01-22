@@ -22,6 +22,10 @@
 #include "ClientData.h"
 using namespace std;
 
+/*
+This class is an abstract class that implements the execute function that all the commands that inherit it must implement
+according to the design template called Command
+ */
 class Command {
     protected:
     DefaultIO *dio;
