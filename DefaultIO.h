@@ -19,7 +19,9 @@
 #include <arpa/inet.h>
 #include "TCPServer.h"
 using namespace std;
-
+/*
+This class is an abstract class whose successors will have to implement the read and write methods in their own way
+ */
 class DefaultIO {
         
     public:
