@@ -21,7 +21,10 @@
 #include "DefaultIO.h"
 #include "Command.h"
 using namespace std;
-
+/*
+This department executes the command process for the option the user chooses in 4-
+and display the classified vector to the user.
+ */
 class DisplayCommand : public Command {
     public:
     DisplayCommand(DefaultIO *dio, ClientData *data);
