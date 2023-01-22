@@ -12,24 +12,37 @@ void Upload::execute() {
     vector<string> test;
     dio->write("Please upload your local train CSV file.");
     string lineTrain = dio->read();
+    if (lineTrain == "return") {
+        return;
+    }
     this->dio->write("okay");
     while(lineTrain != "end"){
-        train.push_back(lineTrain);  
+        if (lineTrain == "return") {
+        return;
+    }
+        else { train.push_back(lineTrain);  
         lineTrain= dio->read();
-        this->dio->write("okay");
+        this->dio->write("okay"); }
     }
     this->getData()->setDataBase(train);
     this->getIO()->write("Upload Complete.");
     dio->write("Please upload your local test CSV file.");
     string lineTest = dio->read();
+    if (lineTest == "return") {
+        return;
+    }
     this->dio->write("okay");
     while(lineTest != "end"){
-        test.push_back(lineTest);  
+        if (lineTest == "return") {
+        return;
+    }
+        else { test.push_back(lineTest);  
         lineTest= dio->read();
-        this->dio->write("okay");
+        this->dio->write("okay"); }
     }
     this->getData()->setNonClassified(test);
     this->getIO()->write("Upload Complete");
     //the file upload
     this->getData()->setFlag();
 }
+
