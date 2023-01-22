@@ -13,13 +13,14 @@
 
 ## General Information
 - This project is eli and ofir shared project as part of an advanced programming course.
-- So far the project illustrates the [KNN algorithm](https://medium.com/swlh/k-nearest-neighbor-ca2593d7a3c4)
+- The project illustrates the [KNN algorithm](https://medium.com/swlh/k-nearest-neighbor-ca2593d7a3c4)
 - This project designed to classify different types of objects according to the reception of the input vector and the classification of the type by calculating the distance of K nearest neighbors and determining according to the type of most of them.
 
 ![image](https://user-images.githubusercontent.com/118715083/209792303-14ada464-df17-4de1-a617-4a0c5110e097.png)
 ![image](https://user-images.githubusercontent.com/118715083/209792410-cd47a439-4393-4692-aad1-7921903de4ad.png)
 
 -This program works in a configuration of TCP conversation of a server against a client
+-In addition, the project supports the running of several clients at the same time as well as multiple trheads.
 
 ## Technologies Used
 - The Euclidean distance and the Manhattan distance is a special case of the Minkowski distance. the only diifarent is the change in P value during the calculation.  Therefore during the calculation of the above two distances (Euclidean distance and the Manhattan distance) we will call the function which calculates the Minkowski distance.  
@@ -75,14 +76,14 @@ The customer is responsible for some of the correctness checks of the informatio
 5. server.cpp - this file summarizes the actions of the server in front of the client when the server will receive as an argument the routing to the data on which it will perform the analysis, and a port number on which it must listen. The server will receive as a message from the client the line of arguments that the user entered and with the help of the KNN algorithm, will perform an analysis of the vector entered by the user against the data that it will check and finally deliver to the client the type that best suits the user's requests.
 - The server is responsible for checking that the vector entered by the user will be the same size as the vectors in the data that the server was asked to check.
 - In addition to this, when calling the KNN algorithm at the server, additional normality checks are performed as we detailed in the KNN file that was already built earlier.
-
-
+In addition The server uses multithreading for two reasons:
+•	Handling multiple clients simultaneously.
+•	Handling time-consuming commands on a different thread so the client will be able to send more messages while waiting.
 ![image](https://user-images.githubusercontent.com/118715083/209791721-75a66328-e9ad-4524-91d2-978acc09b88a.png)
 6.  CLI.cpp- The CLI department of the server creates a specific client for the server and the same department manipulates the running course of the menu by creating a vector of commands according to the options defined in the menu
 CLIClient.cpp - The CLI class of the client creates a specific client at the client and the same class manipulates the running course of the menu on the client side by creating a vector of commands adapted to the client according to the options defined in the menu.
-
-
-
+ the **Command design pattern** in order to handle commands in the server:
+The UML sketch-
 ![image](https://user-images.githubusercontent.com/118715083/213931425-7044c2db-52c8-4c74-bfe3-8bc570732127.png)
 
 ## Compile using this commends:
@@ -91,25 +92,33 @@ An example of a run will be detailed below when we specify the run commands to b
 
 in order to compile the program we use in make file so this is the commend bellow to run:
 ```bash
-# Run the program on Linux in the server terminal:
+# Compile the program on Linux:
 make
+```
+```bash
+# Run the program on Linux in the server terminal:
 ./server.out file port
 ```
+
 ```bash
 # Run the program on Linux in the client terminal:
 ./client.out ip port
-vector distance k
 ```
 
 ```bash
 # An example of a run command line in the server:
-make
-./server.out /home/oem/Desktop/datasets/iris/iris_classified.csv 8080
+./server.out  8080
 ```
 ```bash
 # An example of a run command line in the client:
 ./client.out 127.0.0.1 8080 
-1 1 1 1 MAN 3
+Welcome to the KNN Classifier Server. Please choose an option:
+1. upload an unclassified csv data file
+2. algorithm setting
+3. classify data
+4. display results
+5. download results
+8. exit
 ```
 ## Usage
 The KNN algorithm can compete with the most accurate models because it makes highly accurate predictions. Therefore, you can use the KNN algorithm for applications that require high accuracy but that do not require a human-readable model.
