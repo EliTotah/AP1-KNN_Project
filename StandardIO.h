@@ -22,6 +22,9 @@
 
 using namespace std;
 
+/*
+class that accepts an integer argument, sock, which is used to initialize the socket file descriptor of the class.
+*/
 class StandardIO : public DefaultIO { 
    public:
     StandardIO(int sock);
