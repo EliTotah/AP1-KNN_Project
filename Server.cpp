@@ -26,6 +26,7 @@
 #include "Setting.h"
 #include "Classify.h"
 #include "SocketIO.h"
+#include <thread>
 
 
 using namespace std;
@@ -62,19 +63,20 @@ int main(int argc, char *argv[]) {
              exit(1);
         }
         //The server loop is running continuously and is ready to receive information from the client.
+        vector<thread> threads;
         while (true)
         {   
             //Attempt to accept the socket of the client in case of failure, print error.
             int ClientSock = server.Accept();
             cout << ClientSock;
             if(ClientSock != -1) {
-                RunClient(ClientSock);
-                break;
+            threads.push_back(thread (RunClient, ClientSock));
             }
             // to see what happen here
-            //thread process(RunClient, ClientSock, &server);
-            //process.join();
         }
+        for(int i=0; i<threads.size(); i++){
+                threads.at(i).join();
+            }
         //closing the sock of the client.
         close(server.GetSocket());
         return 0;

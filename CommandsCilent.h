@@ -23,6 +23,7 @@
 #include "TCPclient.h"
 #include <regex>
 #include "ClientData.h"
+#include <thread>
 
 using namespace std;
 
@@ -39,7 +40,6 @@ class CommandsClient {
     string getDec();
     DefaultIO *getIO();
     ClientData *getData();
-    bool isFile(const string &name);
 };
 
 class UploadCommandClient : public CommandsClient {

@@ -1,6 +1,27 @@
 
 #include "CommandsCilent.h"
 
+bool isFile(const string &name) {
+    struct stat buffer{};
+    return ((stat(name.c_str(), &buffer) == 0) and (buffer.st_mode & S_IFREG));
+}
+
+void RunDownload(vector<string> v1){
+            string output;
+            ofstream file;
+            string myFIle = v1.at(0) + "/classify.csv"; 
+            file.open(myFIle);
+            if (isFile(myFIle)){
+                for(int i=1; i<v1.size(); i++){
+                     file << v1.at(i) << endl;
+                }
+                file.close();
+                return;
+            } else {
+                perror("invalid input");
+                return;
+            }
+}
 CommandsClient::CommandsClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient) : dio(_dio), data(_data),tcpClient(_tcpClient){}
 
 string CommandsClient::getDec() {
@@ -15,10 +36,6 @@ ClientData* CommandsClient::getData() {
     return this->data;
 }
 
-bool CommandsClient::isFile(const string &name) {
-    struct stat buffer{};
-    return ((stat(name.c_str(), &buffer) == 0) and (buffer.st_mode & S_IFREG));
-}
 
 
 UploadCommandClient::UploadCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
@@ -150,6 +167,7 @@ DisplayCommandClient::DisplayCommandClient(DefaultIO *_dio, ClientData *_data, T
 
 DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
     void DownloadCommandClient::execute()  {
+        thread t;
       string output, string1;
         this->dio->write("5");
         output = this->dio->read();
@@ -162,23 +180,17 @@ DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data,
             return;
         }
         else {
+            vector<string> v1;
             cout << output << endl;
             getline(cin, string1);
-            ofstream file;
-            string myFIle = string1 + "/classify.csv"; 
-            file.open(myFIle);
-            if (isFile(myFIle)){
-                output = this->dio->read();
+            v1.push_back(string1);
+            output = this->dio->read();
                 while (output!= "Done.")
                 {
-                    file << output << endl;
+                    v1.push_back(output);
                     output = this->dio->read();
                 }
-                file.close();
-                return;
-            } else {
-                perror("invalid input");
-                return;
-            }
-        }
+            t = thread (RunDownload, v1);
+            t.detach();
     }
+}

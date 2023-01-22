@@ -66,19 +66,9 @@ int main(int argc, char *argv[]) {
         tcpClient.connectClient();
         //As long as the client's communication with the server is normal,
         // the user can insert additional vectors and get the appropriate classification for them.
-        while (true) {
-            string string1, line;
-            // scan the line from the user which includes vector, K and distance matrix.
-            if (tcpClient.recieveClient() > 0) {
-            getline(cin,string1);
-            SocketIO *dio = new SocketIO(tcpClient.getSocket());
-            CliCLient cli(dio,tcpClient.getSocket(),string1,tcpClient);
-            cli.start();
-            }
-            else {
-                break;
-            }
-        }
+        SocketIO *dio = new SocketIO(tcpClient.getSocket());
+        CliCLient cli(dio,tcpClient.getSocket(),tcpClient);
+        cli.start();
         //closing the sock of the client.
         close(tcpClient.getSocket());
     }

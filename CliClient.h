@@ -27,12 +27,11 @@ class CliCLient {
     DefaultIO *dio;
     vector<CommandsClient*> vec;
     ClientData *data;
-    string choose;
     int clientSock;
     TCPclient tcpClient;
 
     public:
-    CliCLient(DefaultIO *dio,int clientSock, string choose,TCPclient tcpCLient);
+    CliCLient(DefaultIO *dio,int clientSock,TCPclient tcpCLient);
     void start();
     vector<CommandsClient*>& commands();
     DefaultIO *getIO();

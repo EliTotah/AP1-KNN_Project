@@ -4,7 +4,7 @@
 
 #include "CliClient.h"
 
-CliCLient::CliCLient(DefaultIO *_dio, int _clientSock, string _choose, TCPclient _tcp) : dio(_dio), clientSock(_clientSock), choose(_choose), tcpClient(_tcp) {
+CliCLient::CliCLient(DefaultIO *_dio, int _clientSock, TCPclient _tcp) : dio(_dio), clientSock(_clientSock), tcpClient(_tcp) {
     ClientData *data = new ClientData();
     vector<CommandsClient*> commands;
     UploadCommandClient *u = new UploadCommandClient(dio, data, this->tcpClient);
@@ -28,6 +28,12 @@ DefaultIO* CliCLient::getIO() {
 }
 
 void CliCLient::start() {
+     while (true) {
+        string choose;
+            // scan the line from the user which includes vector, K and distance matrix.
+        if (tcpClient.recieveClient() > 0) {
+        getline(cin,choose);
+        }
         int num;
         try {
             num = stoi(choose);
@@ -46,3 +52,4 @@ void CliCLient::start() {
         }
         vec[num-1]->execute();
 }   
+}
