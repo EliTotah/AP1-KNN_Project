@@ -46,15 +46,16 @@ void UploadCommandClient::execute()  {
         string1 = this->dio->read();
         cout << string1 << endl;
         getline(cin, string1);
-        //if (isFile(string1)) {
-                ifstream MyReadFile(string1);
-                getline(MyReadFile,line);
-                while (getline(MyReadFile, nextLine)) {
-                // validation check of the atgument that the user insert.
-                //if (!(tcpClient.validationClient(line))){
-                  //  perror("invalid input");
-                    //return;
-                //}  
+        if (isFile(string1)) {
+            ifstream MyReadFile(string1);
+            getline(MyReadFile,line);
+            while (getline(MyReadFile, nextLine)) {
+            // validation check of the atgument that the user insert.
+            if (!(stringToVector(line))) {
+                perror("invalid input");
+                this->getIO()->write("return");
+                return;
+            }  
                 //Sending the array of characters containing the user's message to the server.
                 this->dio->write(line);
                 this->dio->read();
@@ -64,12 +65,13 @@ void UploadCommandClient::execute()  {
                 this->dio->read();
                 string1 = "end";
                 dio->write(string1);
-            /*}
+            }
             //ip the user not enter path
             else{
                 perror("invalid input");
+                this->getIO()->write("return");
                 return;
-            }*/
+            }
             this->dio->read();
             string1 = this->dio->read();
             cout << string1 << endl;
@@ -81,10 +83,11 @@ void UploadCommandClient::execute()  {
                 getline(MyReadFile,line);
                 while (getline(MyReadFile, nextLine)) {
                     // validation check of the atgument that the user insert.
-                    //if(!ValidCharForString(line)){
-                      // perror("invalid input");
-                       //return;
-                    //}
+                    if (!(stringToVector(line))) {
+                        perror("invalid input");
+                        this->getIO()->write("return");
+                        return;
+                    } 
                 //Sending the array of characters containing the user's message to the server.
                 this->dio->write(line);
                 this->dio->read();
@@ -94,13 +97,13 @@ void UploadCommandClient::execute()  {
                 this->dio->read();
                 string1 = "end";
                 dio->write(string1);
-                
             }
-            //ip the user not enter path
-            else{
-                perror("invalid input");
-                return;
-            }
+        //ip the user not enter path
+        else{
+            perror("invalid input");
+            this->getIO()->write("return");
+            return;
+        }
             //read the massege from server;
             dio->read();
             string output = dio->read();
@@ -185,10 +188,12 @@ DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data,
             getline(cin, string1);
             v1.push_back(string1);
             output = this->dio->read();
-                while (output!= "Done.")
-                {
-                    v1.push_back(output);
-                    output = this->dio->read();
+            this->getIO()->write("okay");
+            while (output!= "Done.")
+               {
+                v1.push_back(output);
+                output = this->dio->read();
+                this->getIO()->write("okay");
                 }
             t = thread (RunDownload, v1);
             t.detach();
