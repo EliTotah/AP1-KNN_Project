@@ -2,7 +2,9 @@
 // Ofir Rothchild - 207434960
 
 #include "SocketIO.h"
-
+/*
+class constructor accepts an integer argument, clientSock, which is used to initialize the socket file descriptor of the class.
+*/
 SocketIO::SocketIO(int clientSock) {
     this->socket = clientSock;
 }
