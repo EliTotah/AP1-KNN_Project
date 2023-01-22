@@ -39,7 +39,7 @@ void CliCLient::start() {
             num = stoi(choose);
         }
         catch (exception e) {
-            this->getIO()->write("please enter a number-1\n");
+            this->getIO()->write("please enter a number\n");
             return;
         }
         if (choose == "8") {
