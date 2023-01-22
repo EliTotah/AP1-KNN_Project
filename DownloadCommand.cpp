@@ -24,6 +24,7 @@ void DownloadCommand::execute() {
             stringstream ss;
             ss << (i+1) << '\t' << this->getData()->getClassified()[i] << endl;
             this->getIO()->write(ss.str());
+            this->getIO()->read();
         }
         this->getIO()->write("Done.");
     }
