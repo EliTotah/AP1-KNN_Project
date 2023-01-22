@@ -21,7 +21,10 @@
 #include "DefaultIO.h"
 #include "Command.h"
 using namespace std;
-
+/*
+This department executes the command process for the option the user chooses in 5-
+and downloads the classified file to the user's computer
+ */
 class DownloadCommand : public Command {
     public:
     DownloadCommand(DefaultIO *dio, ClientData *data);
