@@ -23,6 +23,7 @@ class ClientData {
 
     public:
     ClientData();
+    ~ClientData() = default;
     int getFlag();
     void setFlag();
     void setSettings (int k, string distance);
