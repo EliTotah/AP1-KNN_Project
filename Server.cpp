@@ -68,7 +68,6 @@ int main(int argc, char *argv[]) {
         {   
             //Attempt to accept the socket of the client in case of failure, print error.
             int ClientSock = server.Accept();
-            cout << ClientSock;
             if(ClientSock != -1) {
             threads.push_back(thread (RunClient, ClientSock));
             }
