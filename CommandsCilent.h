@@ -36,6 +36,7 @@ class CommandsClient {
     
     public:
     CommandsClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient);
+    ~CommandsClient() = default;
     virtual void execute() = 0;
     string getDec();
     DefaultIO *getIO();
