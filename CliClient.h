@@ -32,6 +32,7 @@ class CliCLient {
 
     public:
     CliCLient(DefaultIO *dio,int clientSock,TCPclient tcpCLient);
+    ~CliCLient();
     void start();
     vector<CommandsClient*>& commands();
     DefaultIO *getIO();
