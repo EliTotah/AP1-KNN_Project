@@ -23,6 +23,7 @@ using namespace std;
 class TCPServer {
     public:
     TCPServer(int Server_Port);
+     ~TCPServer() = default;
     int GetServerPort();
     int GetSocket();
     void Bind();
