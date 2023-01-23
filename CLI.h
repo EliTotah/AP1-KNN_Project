@@ -39,6 +39,7 @@ class CLI {
 
     public:
     CLI (DefaultIO *dio, int clientsock);
+    ~CLI();
     void start();
     vector<Command*>& commands();
     DefaultIO *getIO();
