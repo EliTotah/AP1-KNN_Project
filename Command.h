@@ -34,6 +34,7 @@ class Command {
     
     public:
     Command(DefaultIO *_dio, ClientData *_data);
+    ~Command() = default;
     virtual void execute() = 0;
     string getDec();
     DefaultIO *getIO();
