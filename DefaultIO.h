@@ -27,6 +27,7 @@ class DefaultIO {
     public:
 
     DefaultIO();
+    ~DefaultIO() = default;
     virtual string read() = 0;
     virtual void write(string s) = 0;
 private:
