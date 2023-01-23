@@ -29,6 +29,7 @@ and setting the parametters k and distance according to the user choose.
 class Setting: public Command {
     public:
     Setting(DefaultIO *dio, ClientData *data);
+    ~Setting() = default;
     void execute();
 };
 
