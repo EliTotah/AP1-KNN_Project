@@ -25,6 +25,7 @@ using namespace std;
 class Upload: public Command {
     public:
     Upload(DefaultIO *dio, ClientData *data);
+    ~Upload() = default;
     void execute();
 };
 
