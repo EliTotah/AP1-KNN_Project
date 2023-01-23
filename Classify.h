@@ -25,6 +25,7 @@ using namespace std;
 class Classify: public Command {
     public:
     Classify(DefaultIO *dio, ClientData *data);
+    ~Classify() = default;
     void execute() override;
 };
 
