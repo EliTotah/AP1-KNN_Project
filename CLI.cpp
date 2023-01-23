@@ -24,6 +24,14 @@ CLI::CLI(DefaultIO *_dio, int _clientsock) : dio(_dio),clientsock(_clientsock) {
     vec.push_back(do1);
 }
 
+CLI::~CLI(){
+    delete data;
+    delete dio;
+    for (auto & v:vec) {
+        delete v;
+    }
+}
+
 vector<Command*>& CLI::commands() {
     return this->vec;
 }
