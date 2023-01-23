@@ -80,6 +80,14 @@ int ValidCharForString(string vector1);
 * and performs a check on the correctness of the input.
 ******************/
 int ValidateAll(vector<double>& v1, vector<double>& v2);
+
+/******************
+* Function Name: stringToVector
+* Input: string string1.
+* Output: int - 0 if false, 1 - true.
+* Function Operation: This function takes a string as an input and converts it into a vector of doubles, 
+* and check if this vector is valid, i.e. check that all the elements in the vector are numbers.
+******************/
 int stringToVector (string string1);
 
 #endif
