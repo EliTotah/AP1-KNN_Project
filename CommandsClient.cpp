@@ -1,18 +1,32 @@
 
 #include "CommandsCilent.h"
 
+/******************
+* Function Name: isFile
+* Input:string &name
+* Output: bool
+* Function Operation: verify that the input string is file
+******************/
 bool isFile(const string &name) {
     struct stat buffer{};
     return ((stat(name.c_str(), &buffer) == 0) and (buffer.st_mode & S_IFREG));
 }
 
+/******************
+* Function Name: RunDownload
+* Input: vector<string> v1
+* Output: void
+* Function Operation: the function forward the string from the vector to the file
+******************/
 void RunDownload(vector<string> v1){
             string output;
             ofstream file;
+            // open file in the entered path 
             string myFIle = v1.at(0) + "/classify.csv"; 
             file.open(myFIle);
             if (isFile(myFIle)){
                 for(int i=1; i<v1.size(); i++){
+                    // forward the string from the vector to the file
                      file << v1.at(i) << endl;
                 }
                 file.close();
@@ -40,23 +54,30 @@ ClientData* CommandsClient::getData() {
 
 UploadCommandClient::UploadCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
 
+/******************
+* Function Name: execute
+* Input: void
+* Output: void
+* Function Operation: the function forward the data in the files to the server 
+******************/
 void UploadCommandClient::execute()  {
         string string1, line, nextLine;
         this->dio->write("1");
         string1 = this->dio->read();
         cout << string1 << endl;
+        // get the path from the user
         getline(cin, string1);
         if (isFile(string1)) {
             ifstream MyReadFile(string1);
             getline(MyReadFile,line);
             while (getline(MyReadFile, nextLine)) {
-            // validation check of the atgument that the user insert.
+            // validation check of the string in the file.
             if (!(stringToVector(line))) {
                 perror("invalid input");
                 this->getIO()->write("return");
                 return;
             }  
-                //Sending the array of characters containing the user's message to the server.
+                //Sending the string to the server.
                 this->dio->write(line);
                 this->dio->read();
                 line = nextLine;
@@ -66,7 +87,7 @@ void UploadCommandClient::execute()  {
                 string1 = "end";
                 dio->write(string1);
             }
-            //ip the user not enter path
+            //if the user not enter path
             else{
                 perror("invalid input");
                 this->getIO()->write("return");
@@ -82,13 +103,13 @@ void UploadCommandClient::execute()  {
                 ifstream MyReadFile(string1);
                 getline(MyReadFile,line);
                 while (getline(MyReadFile, nextLine)) {
-                    // validation check of the atgument that the user insert.
+                    // validation check of the strings in the file.
                     if (!(stringToVector(line))) {
                         perror("invalid input");
                         this->getIO()->write("return");
                         return;
                     } 
-                //Sending the array of characters containing the user's message to the server.
+                //Sending the strings to the server.
                 this->dio->write(line);
                 this->dio->read();
                 line = nextLine;
@@ -98,7 +119,7 @@ void UploadCommandClient::execute()  {
                 string1 = "end";
                 dio->write(string1);
             }
-        //ip the user not enter path
+        //if the user not enter path
         else{
             perror("invalid input");
             this->getIO()->write("return");
@@ -112,8 +133,13 @@ void UploadCommandClient::execute()  {
     }
 
 
-
     SettingCommandClient::SettingCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
+/******************
+* Function Name: execute
+* Input: void
+* Output: void
+* Function Operation: the function prints the currents k and metrica and give the user option to change them
+******************/
     void SettingCommandClient::execute()  {
         string output, string1;
         this->dio->write("2");
@@ -129,8 +155,13 @@ void UploadCommandClient::execute()  {
     }
 
 
-
     ClassifyCommandClient::ClassifyCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
+/******************
+* Function Name: execute
+* Input: void
+* Output: void
+* Function Operation: the function send to server the choice - so the server will classify the data
+******************/
     void ClassifyCommandClient::execute()  {
         string output, string1;
         this->dio->write("3");
@@ -139,8 +170,13 @@ void UploadCommandClient::execute()  {
     }
 
 
-
 DisplayCommandClient::DisplayCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
+/******************
+* Function Name: execute
+* Input: void
+* Output: void
+* Function Operation: the function gets the classifications from the server and display them on the screen
+******************/
     void DisplayCommandClient::execute()  {
         string output, string1;
         this->dio->write("4");
@@ -169,6 +205,13 @@ DisplayCommandClient::DisplayCommandClient(DefaultIO *_dio, ClientData *_data, T
 
 
 DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient): CommandsClient (_dio, _data, _tcpClient){}
+
+/******************
+* Function Name: execute
+* Input: void
+* Output: void
+* Function Operation: the function gets the classifications from the server and download them to file in the path that the user insert
+******************/
     void DownloadCommandClient::execute()  {
         thread t;
       string output, string1;
