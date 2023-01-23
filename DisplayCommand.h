@@ -28,6 +28,7 @@ and display the classified vector to the user.
 class DisplayCommand : public Command {
     public:
     DisplayCommand(DefaultIO *dio, ClientData *data);
+    ~DisplayCommand() = default;
     void execute();
 };
 
