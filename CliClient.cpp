@@ -61,7 +61,8 @@ void CliCLient::start() {
         }
         if (num <=0 || num > vec.size()) {
             this->getIO()->write("invalid choose\n");
-            return;
+            cout << this->getIO()->read();
+            continue;
         }
         vec[num-1]->execute();
 }   
