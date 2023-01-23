@@ -102,6 +102,14 @@ int ValidateAll(vector<double>& v1, vector<double>& v2) {
     return false;
 }
 
+/******************
+* Function Name: stringToVector
+* Input: string string1.
+* Output: int - 0 if false, 1 - true.
+* Function Operation: This function takes a string as an input and converts it into a vector of doubles, 
+* and check if this vector is valid, i.e. check that all the elements in the vector are numbers.
+******************/
+
 int stringToVector (string string1) {
     int result=0, flag = 0;
     double number1;
@@ -121,6 +129,7 @@ int stringToVector (string string1) {
             break;
         }
     }
+    // verify that the vector is valid and not empty
     if (ValidChar(v1) == 1 && !(v1.empty())) {
         return true;
     }
