@@ -17,6 +17,7 @@
 class TCPclient {
 public:
     TCPclient(int port, const char* ip);
+    ~TCPclient() = default;
     int getSocket ();
     void connectClient();
     int validationClient (string message);
