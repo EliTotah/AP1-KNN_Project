@@ -26,6 +26,7 @@ class SocketIO : public DefaultIO {
 
 public:
     SocketIO(int cilentSock);
+    ~SocketIO() = default;
     string read();
     void write(string s);
 private:
