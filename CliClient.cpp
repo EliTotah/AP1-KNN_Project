@@ -27,6 +27,12 @@ DefaultIO* CliCLient::getIO() {
     return this->dio;
 }
 
+/******************
+* Function Name: start
+* Input:void
+* Output: void
+* Function Operation: start function that starts the command-line interface
+******************/
 void CliCLient::start() {
      while (true) {
         string choose;
