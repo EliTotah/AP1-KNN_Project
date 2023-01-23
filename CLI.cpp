@@ -71,6 +71,11 @@ void CLI::start() {
         menu();
         //reads the input of the user
         string choose = this->getIO()->read();
+        // check if the input is out of range
+        if (choose == "invalid choose\n") {
+            this->getIO()->write("invalid choose\n");
+            continue;
+        }
         int num;
         try {
             // try to convert the input to integer
