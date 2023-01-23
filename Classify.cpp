@@ -5,6 +5,12 @@ Classify:: Classify (DefaultIO *dio, ClientData *data) : Command (dio, data){
     this->description = "classify data";
 }
 
+/*************
+ Function Name: execute
+* Input: none
+* Output: void
+* Function Operation: the function classify the data and saved the data in vector.
+**************/
 void Classify:: execute(){
     if (this->getData()->getFlag() !=1){
         this->getIO()->write("please upload data");
