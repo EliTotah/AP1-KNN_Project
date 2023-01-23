@@ -17,6 +17,7 @@ using namespace std;
 class Knn {
 public:
     Knn(vector<double>& v1, int k, string& DistanceType, vector<string> file);
+    ~Knn() = default;
     string KnnProcess();
 
 private:
