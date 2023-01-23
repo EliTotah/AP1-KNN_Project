@@ -19,6 +19,13 @@ CliCLient::CliCLient(DefaultIO *_dio, int _clientSock, TCPclient _tcp) : dio(_di
     vec.push_back(do1);
 }
 
+CliCLient::~CliCLient(){
+    delete dio;
+    for (auto & v:vec) {
+        delete v;
+    }
+}
+
 vector<CommandsClient*>& CliCLient::commands() {
     return this->vec;
 }
