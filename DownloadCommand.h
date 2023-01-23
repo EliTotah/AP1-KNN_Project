@@ -28,6 +28,7 @@ and downloads the classified file to the user's computer
 class DownloadCommand : public Command {
     public:
     DownloadCommand(DefaultIO *dio, ClientData *data);
+    ~DownloadCommand() = default;
     void execute();
 };
 
