@@ -27,7 +27,7 @@ void RunDownload(vector<string> v1){
             if (isFile(myFIle)){
                 for(int i=1; i<v1.size(); i++){
                     // forward the string from the vector to the file
-                     file << v1.at(i) << endl;
+                     file << v1.at(i);
                 }
                 file.close();
                 return;
