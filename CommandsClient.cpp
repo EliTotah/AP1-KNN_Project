@@ -22,7 +22,7 @@ void RunDownload(vector<string> v1){
             string output;
             ofstream file;
             // open file in the entered path 
-            string myFIle = v1.at(0) + "/classify.csv"; 
+            string myFIle = v1.at(0) + "/classify.txt"; 
             file.open(myFIle);
             if (isFile(myFIle)){
                 for(int i=1; i<v1.size(); i++){
