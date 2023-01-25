@@ -73,7 +73,7 @@ void CLI::start() {
         string choose = this->getIO()->read();
         // check if the input is out of range
         if (choose == "invalid choose\n") {
-            this->getIO()->write("invalid choose\n");
+            this->getIO()->write("invalid input\n");
             continue;
         }
         int num;
