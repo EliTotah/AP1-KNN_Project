@@ -71,6 +71,7 @@ class DownloadCommandClient : public CommandsClient {
 public:
 DownloadCommandClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient);
 void execute();
+bool isValidPath (string name);
 };
 
 
