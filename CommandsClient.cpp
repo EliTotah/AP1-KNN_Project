@@ -238,7 +238,16 @@ DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data,
                 output = this->dio->read();
                 this->getIO()->write("okay");
                 }
-            t = thread (RunDownload, v1);
-            t.detach();
+            if (DownloadCommandClient::isValidPath(v1.at(0))) {    
+                t = thread (RunDownload, v1);
+                t.detach(); }  
+            else {
+                cout << "invalid input" << endl;
+            }    
     }
+}
+
+bool DownloadCommandClient::isValidPath (string name) {
+    struct stat buffer;
+    return ((stat(name.c_str(), &buffer) == 0));
 }
