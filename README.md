@@ -90,21 +90,21 @@ In addition The server uses multithreading for two reasons:
 5. download results
 8. exit
 
-1- The user will be given the option to type a path to his local csv file
+**1**- The user will be given the option to type a path to his local csv file
 on the computer, and after pressing enter the client will send the contents of the file to the server.
-2- The server will send the current classifier parameter values which is the K parameter value
+**2**- The server will send the current classifier parameter values which is the K parameter value
 and the current distance meter.
-3- The server will run the algorithm on the CSV files uploaded earlier. at the end
+**3**- The server will run the algorithm on the CSV files uploaded earlier. at the end
 Running the server will write "complete data classifying" and we will return to the main menu.
 If no files have been uploaded yet, print "data upload please.
-4- The server will return the list of classifications. For each classification the print will be as follows: number
+**4**- The server will return the list of classifications. For each classification the print will be as follows: number
 The line in the test file, tab, the classification and then line drop. Finally ".Done" will be printed after enter of
 The user must return to the main menu.
-5- The behavior will be similar to option 4, only instead of printing the results
+**5**- The behavior will be similar to option 4, only instead of printing the results
 The user will enter a path to create the file locally and there the client will save the results, exactly the same
 The format (without Done).
 In addition to this, we note that in this part of the exercise we assumed that the user will enter **a path to the folder** where he wants the classification file to be created.
-When we will create a csv file called classify which will include the classifications of the information entered by the user
+When we will create a text file called classify which will include the classifications of the information entered by the user
 This process will happen in a separate thread.
 
  the **Command design pattern** in order to handle commands in the server:
