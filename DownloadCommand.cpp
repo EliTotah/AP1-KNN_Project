@@ -45,5 +45,6 @@ void DownloadCommand::execute() {
             this->getIO()->read();
         }
         this->getIO()->write("Done.");
+        this->getIO()->read();
     }
 }
