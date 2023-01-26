@@ -19,23 +19,19 @@ bool isFile(const string &name) {
 * Function Operation: the function forward the string from the vector to the file
 ******************/
 void RunDownload(vector<string> v1){
-            string output;
             ofstream file;
             // open file in the entered path 
-            string myFIle = v1.at(0) + "/classify.txt"; 
+            string myFIle = v1.at(0);
             file.open(myFIle);
-            if (isFile(myFIle)){
                 for(int i=1; i<v1.size(); i++){
                     // forward the string from the vector to the file
                      file << v1.at(i);
                 }
                 file.close();
                 return;
-            } else {
-                perror("invalid input");
-                return;
-            }
 }
+
+
 CommandsClient::CommandsClient(DefaultIO *_dio, ClientData *_data, TCPclient _tcpClient) : dio(_dio), data(_data),tcpClient(_tcpClient){}
 
 string CommandsClient::getDec() {
@@ -238,12 +234,23 @@ DownloadCommandClient::DownloadCommandClient(DefaultIO *_dio, ClientData *_data,
                 output = this->dio->read();
                 this->getIO()->write("okay");
                 }
-            if (DownloadCommandClient::isValidPath(v1.at(0))) {    
+            ofstream file;
+            // open file in the entered path 
+            string myFIle = v1.at(0); 
+            // check if the path if with file and insert to him the results
+            if (isFile(myFIle)) {   
                 t = thread (RunDownload, v1);
                 t.detach(); }  
             else {
+                // if we got path without text file, we create it
+                if (DownloadCommandClient::isValidPath(v1.at(0))) {
+                    v1.at(0).append("/results.txt");
+                    t = thread (RunDownload, v1);
+                    t.detach(); } 
+                else {    
                 cout << "invalid input" << endl;
             }    
+        }
     }
 }
 
