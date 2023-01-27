@@ -53,7 +53,7 @@ We changed the classifier to work when facing an ambiguous decision. The classif
 We used the Command design pattern in order to handle commands in the server. The base Command class is an abstract class, it has access to client data and IO, and each command subclass implements the execution differently. The commands are stored in a vector which is also used as a menu, and they are invoked using an index given by the client.
 - We implemented the program by dividing it into a number of different files according to the main purpose of each file where the division is:
 1. Distance.cpp + Distance.h : 
-These files are responsible for calculating the distance between the vectors using the familiar formulas I mentioned above when we noticed that the Euclidean distance and the Manhattan distance are a special case of the Minikowski distance, so the calculation of these two distances was carried out using the Minikowski distance functionץ
+These files are responsible for calculating the distance between the vectors using the familiar formulas I mentioned above when we noticed that the Euclidean distance and the Manhattan distance are a special case of the Minikowski distance, so the calculation of these two distances was carried out using the Minikowski distance function.
 2. Validation.cpp + Validation.h:
 These files are responsible for checking the correctness of the input when for each test we have performed appropriate treatment so that the user understands what his error is and corrects it as necessary.
 Some of the checked errors-
@@ -83,29 +83,41 @@ In addition The server uses multithreading for two reasons:
 6.  CLI.cpp- The CLI department of the server creates a specific client for the server and the same department manipulates the running course of the menu by creating a vector of commands according to the options defined in the menu
 7.  CLIClient.cpp - The CLI class of the client creates a specific client at the client and the same class manipulates the running course of the menu on the client side by creating a vector of commands adapted to the client according to the options defined in the menu.
 8. commands- In accordance with the definition of the exercise, we implemented several classes of the options provided to the user in the main menu according to the following breakdown:
-1. upload an unclassified csv data file
-2. algorithm setting
-3. classify data
-4. display results
-5. download results
-8. exit
+
+**1.** upload an unclassified csv data file
+
+**2.** algorithm setting
+
+**3.** classify data
+
+**4.** display results
+
+**5.** download results
+
+**8.** exit
 
 **1**- The user will be given the option to type a path to his local csv file
 on the computer, and after pressing enter the client will send the contents of the file to the server.
+
 **2**- The server will send the current classifier parameter values which is the K parameter value
 and the current distance meter.
+
 **3**- The server will run the algorithm on the CSV files uploaded earlier. at the end
 Running the server will write "complete data classifying" and we will return to the main menu.
 If no files have been uploaded yet, print "data upload please.
+
 **4**- The server will return the list of classifications. For each classification the print will be as follows: number
 The line in the test file, tab, the classification and then line drop. Finally ".Done" will be printed after enter of
 The user must return to the main menu.
+
 **5**- The behavior will be similar to option 4, only instead of printing the results
 The user will enter a path to create the file locally and there the client will save the results, exactly the same
 The format (without Done).
-In addition to this, we note that in this part of the exercise we assumed that the user will enter **a path to the folder** where he wants the classification file to be created.
-When we will create a text file called classify which will include the classifications of the information entered by the user
-This process will happen in a separate thread.
+
+- In addition to this, if the user has entered a **valid path to the file** where he wants the data to appear, we will write the classifications to that file.
+In case the user entered only a **path to the folder** in which he wants the file to be opened, we will create a new file in the same path entered by the user named results.txt where we will write the classifications.
+
+- This process will happen in a separate thread.
 
  the **Command design pattern** in order to handle commands in the server:
  
